@@ -17,6 +17,11 @@ def calculate(arg):
                 stack.append((val1+val2)) 
             elif token == '-':
                 stack.append((val1-val2))
+            elif token == '*':
+                stack.append((val1*val2)) 
+            elif token == '/':
+                stack.append((val1/val2)) 
+            
             return stack[0]
         
     pass
