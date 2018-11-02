@@ -3,7 +3,6 @@ python:
 - "3.5" 
 test: 
         python3 -m unittest
-.PHONY:test
 
 script: 
 - pytest 
