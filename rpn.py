@@ -10,18 +10,18 @@ def calculate(arg):
     #stack for the calculator 
     # take input and tokenize it 
     #process tokens 
-    stack =[]
-    tokens = arg.split()
-    for token in tokens:
+    stack =arg.split()
+    while len(stack)>1:
+        token=stack.pop()
         try: 
             value= int (token)
             stack.append(value)
         except ValueError:
-            val1=stack.pop()
-            val2=stack.pop()
+            val1=int(stack.pop())
+            val2=int(stack.pop())
             func = op[token]
-            stack.append(func(val1,val2))          
-            return stack[0]
+            stack.append(str(func(val1,val2)))          
+    return int(stack[0])
         
     pass
 def main():
