@@ -68,7 +68,7 @@ def space():
     results.insert(END," ")
     return 
 def appearpow():
-    eruslts.insert(END,"^")
+    results.insert(END,"^")
     return 
 #Button(buttons, bg="White", text=numbers[index], width=5, height=2, appear).grid(padx=5, pady=5, row=index%3, column=index/3)
 Button(buttons, text = '1',bg='LightCyan',font='Helvetica 16 bold ',command=appear1).grid(row = 1, column = 0)
