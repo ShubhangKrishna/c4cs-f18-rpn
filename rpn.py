@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import operator
-
+import math 
 
 operators = {
     '+': operator.add,
@@ -9,6 +9,15 @@ operators = {
     '*': operator.mul,
     '/': operator.truediv,
     '^': operator.__pow__,
+    'A': operator.__and__,
+    'V': operator.__or__,
+    'not': operator.__not__,
+    'sin': math.sin,
+    'cos': math.cos,
+    'tan': math.tan,
+    'pi': math.pi,
+    'e': math.exp,
+
 }
 
 def calculate(myarg):
