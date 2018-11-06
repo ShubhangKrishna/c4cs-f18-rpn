@@ -11,26 +11,31 @@ operators = {
     '^': operator.__pow__,
     'A': operator.__and__,
     'V': operator.__or__,
-    'not': operator.__not__,
+    'N': operator.__not__,
     'sin': math.sin,
     'cos': math.cos,
     'tan': math.tan,
     'pi': math.pi,
     'e': math.exp,
+    '//': operator.__floordiv__,
 
 }
 
-def calculate(myarg):
+def calculateR(myarg):
     stack = list()
     for token in myarg.split():
         try:
-            token = int(token)
+            if (token=='pi'):
+                token=math.pi
+            elif (token=='e'):
+                token=math.exp    
+            token = float(token)
             stack.append(token)
         except ValueError:
-            if len(token) == 1:
+            if len(token) != 3:
                 function = operators[token]
-                arg2 = stack.pop()
-                arg1 = stack.pop()
+                arg2 =float(stack.pop())
+                arg1 =float(stack.pop())
                 result = function(arg1, arg2)
                 stack.append(result)
             else: 
@@ -43,10 +48,42 @@ def calculate(myarg):
         raise TypeError("Too many parameters")
     return stack.pop()
 
+def calculateD(myarg):
+    stack = list()
+    for token in myarg.split():
+        try:
+            if (token=='pi'):
+                token=math.pi
+            elif (token=='e'):
+                token=math.exp
+            token = float(token)
+            stack.append(token)
+        except ValueError:
+            if len(token) != 3:
+                function = operators[token]
+                arg2 =float(stack.pop())
+                arg1 =float(stack.pop())
+                result = function(arg1, arg2)
+                stack.append(result)
+            else:
+                function = operators[token]
+                arg1= float(stack.pop())
+                result = function(math.radians(arg1* (math.pi/180)))
+                stack.append(result)
+        print(stack)
+    if len(stack) != 1:
+        raise TypeError("Too many parameters")
+    return stack.pop()
+
 def main():
+    
     while True:
-        result = calculate(input("rpn calc> "))
-        print("Result: ", result)
+        k=input("Degree or Radian ?(1/2)> ")
+        if k==1: 
+            result = calculateD(input("rpn calc> "))
+            print("Result: ", result)
+        else: 
+            result = calculateR(input("rpn calc> "))
 
 if __name__ == '__main__':
     main()
