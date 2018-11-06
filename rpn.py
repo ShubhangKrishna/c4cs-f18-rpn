@@ -38,7 +38,36 @@ def calculateR(myarg):
                 arg1 =float(stack.pop())
                 result = function(arg1, arg2)
                 stack.append(result)
+
             else: 
+                function = operators[token]
+                arg1= stack.pop()
+                result = function(math.radians(arg1))
+                stack.append(result)
+        print(stack)
+    if len(stack) != 1:
+        raise TypeError("Too many parameters")
+    return stack.pop()
+
+def calculateL(myarg):
+    stack = list()
+    for token in myarg.split():
+        try:
+            if (token=='pi'):
+                token=math.pi
+            elif (token=='e'):
+                token=math.exp
+            token = int(token)
+            stack.append(token)
+        except ValueError:
+            if len(token) != 3:
+                function = operators[token]
+                arg2 =int(stack.pop())
+                arg1 =int(stack.pop())
+                result = function(arg1, arg2)
+                stack.append(result)
+
+            else:
                 function = operators[token]
                 arg1= stack.pop()
                 result = function(math.radians(arg1))
@@ -78,12 +107,13 @@ def calculateD(myarg):
 def main():
     
     while True:
-        k=input("Degree or Radian ?(1/2)> ")
+        k=input("Degree or Radian or Logical ?(1/2/3)> ")
         if k==1: 
             result = calculateD(input("rpn calc> "))
             print("Result: ", result)
-        else: 
+        elif k==2: 
             result = calculateR(input("rpn calc> "))
-
+        else: 
+            result=calculateL(input("rpn calc> "))
 if __name__ == '__main__':
     main()
