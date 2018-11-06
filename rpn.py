@@ -27,11 +27,17 @@ def calculate(myarg):
             token = int(token)
             stack.append(token)
         except ValueError:
-            function = operators[token]
-            arg2 = stack.pop()
-            arg1 = stack.pop()
-            result = function(arg1, arg2)
-            stack.append(result)
+            if len(token) == 1:
+                function = operators[token]
+                arg2 = stack.pop()
+                arg1 = stack.pop()
+                result = function(arg1, arg2)
+                stack.append(result)
+            else: 
+                function = operators[token]
+                arg1= stack.pop()
+                result = function(math.radians(arg1))
+                stack.append(result)
         print(stack)
     if len(stack) != 1:
         raise TypeError("Too many parameters")
